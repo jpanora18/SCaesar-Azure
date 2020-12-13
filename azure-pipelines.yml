@@ -28,9 +28,9 @@ steps:
 - script: |
     pip install coverage
     coverage run test_runner.py
-    coverage xml –o coverage.xml
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: 'coverage.xml'
-  condition: succeededOrFailed()
+#    coverage xml –o coverage.xml
+#- task: PublishTestResults@2
+#  inputs:
+#    testResultsFiles: 'coverage.xml'
+#  condition: succeededOrFailed()
 
