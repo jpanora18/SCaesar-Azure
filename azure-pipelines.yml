@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'macOS-10.13'
 strategy:
   matrix:
     Python38:
@@ -28,10 +28,10 @@ steps:
 - script: |
     pip install coverage
     coverage run test_runner.py
-#    coverage xml –o coverage.xml
-#- task: PublishTestResults@2
-#  inputs:
-#    testResultsFiles: 'coverage.xml'
-#    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
-#  condition: succeededOrFailed()
+    coverage xml –o coverage.xml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: 'coverage.xml'
+    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
+  condition: succeededOrFailed()
 
