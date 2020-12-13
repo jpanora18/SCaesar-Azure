@@ -7,9 +7,16 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'macOS-10.13'
+strategy:
+  matrix:
+    Python38:
+      python.version: '3.8'
 
 steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -17,6 +24,14 @@ steps:
     pip install xmlrunner
     pip install unittest_xml_reporting
     python test_xmlrunner.py
+  displayName: 'Run xmlrunner'
+- script: |
     pip install coverage
     coverage run test_runner.py
-  displayName: 'Run a multi-line script'
+    coverage xml –o coverage.xml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: 'reports/coverage.xml'
+    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
+  condition: succeededOrFailed()
+
