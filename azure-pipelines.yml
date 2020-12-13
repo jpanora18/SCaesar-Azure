@@ -31,7 +31,7 @@ steps:
     coverage xml –o coverage.xml
 - task: PublishTestResults@2
   inputs:
-    testResultsFiles: 'reports/coverage.xml'
+    testResultsFiles: 'coverage.xml'
     testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
   condition: succeededOrFailed()
 
