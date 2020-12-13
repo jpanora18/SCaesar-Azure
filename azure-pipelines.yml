@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'macOS-10.13'
+  vmImage: 'Ubuntu-16.04'
 strategy:
   matrix:
     Python38:
@@ -32,6 +32,5 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: 'coverage.xml'
-    testRunTitle: '$(Agent.OS) - $(Build.DefinitionName) - Python $(python.version)'
   condition: succeededOrFailed()
 
