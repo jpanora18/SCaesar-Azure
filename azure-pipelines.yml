@@ -1,8 +1,4 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -17,8 +13,8 @@ steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: echo Simple Caesar Program
+  displayName: 'Run a multi-line script'
 
 - script: |
     pip install xmlrunner
@@ -28,9 +24,5 @@ steps:
 - script: |
     pip install coverage
     coverage run test_runner.py
-#    coverage xml –o coverage.xml
-#- task: PublishTestResults@2
-#  inputs:
-#    testResultsFiles: 'coverage.xml'
-#  condition: succeededOrFailed()
+
 
